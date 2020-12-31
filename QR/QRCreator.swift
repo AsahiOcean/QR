@@ -18,8 +18,7 @@ final class QRCreator: ObservableObject {
     }
     
     func pasteboard() {
-        guard let stringValue = NSPasteboard.general.pasteboardItems?.first?.string(forType: .string) ?? self.text
-            else { fatalError() }
+        guard let stringValue = NSPasteboard.general.pasteboardItems?.first?.string(forType: .string) ?? self.text else { fatalError() }
         self.text = stringValue
     }
     
@@ -29,7 +28,7 @@ final class QRCreator: ObservableObject {
                 let qrFilter = CIFilter(name: "CIQRCodeGenerator"),
                 let data = string.data(using: .utf8)
             else { return }
- 
+            
             qrFilter.setValue(data, forKey: "inputMessage")
             let transform = CGAffineTransform(scaleX: 10, y: 10)
             
